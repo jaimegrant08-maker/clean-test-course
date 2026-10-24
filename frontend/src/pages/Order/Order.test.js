@@ -5,7 +5,6 @@ import { API_URL } from '../../utils/constants';
 import axios from 'axios';
 import Order from '.';
 import OrderContext from '../../context/OrderContext';
-
 describe('Test Order', () => {
   let orderName;
   let orderItems;
@@ -35,9 +34,10 @@ describe('Test Order', () => {
         <Order />
       </OrderContext.Provider>
     );
-    //Assert: replace the return true.
+       //Assert: replace the return true.
     await waitFor(() => {
-      return true;
+      expect(screen.getAllByText('$2.50'))
+        .toHaveLength(1);
     });
   });
 
@@ -63,7 +63,8 @@ describe('Test Order', () => {
     );
     //Assert: replace the return true.
     await waitFor(() => {
-      return true;
+      expect(screen.getAllByText('$5.00'))
+        .toHaveLength(1);
     });
   });
 });
